@@ -29,7 +29,7 @@ int main() {
     int choice, height, width;
 
     do {
-        getUserChoice(); // call fxn for getUserChoice
+        choice = getUserChoice(); // call fxn for getUserChoice
 
         switch(choice) {
             case 1: // draw triangle
@@ -62,13 +62,22 @@ int main() {
                     std::cout << "ERROR: Width and height must be between 1 and " << MAX_WIDTH << " for width, and 1 and " << MAX_HEIGHT << " for height.\n";
                 }
                 break;
-            case 4: // exit
+            case 4: // draw bow tie with square in center
+                std::cout << "Enter the height of your bow tie (must be an odd number): ";
+                std::cin >> height;
+                if (height > 0 && height <= MAX_HEIGHT && height % 2 != 0) {
+                    shapes.drawBowTie(height);
+                } else {
+                    std::cout << "ERROR: Height must be an odd number between 1 and " << MAX_HEIGHT << ".\n";
+                }
+                break;
+            case 5: // exit
                 std::cout << "Exiting...\n";
                 break;
             default: // catching strays
                 std::cout << "Invalid choice! Please choose again.\n";
         }
-    } while (choice != 4);
+    } while (choice != 5);
 
     return 0;
 }
@@ -81,7 +90,8 @@ int getUserChoice(){
     std::cout << "1. Triangle\n";
     std::cout << "2. Inverted triangle\n";
     std::cout << "3. Rectangle\n";
-    std::cout << "4. Exit\n";
+    std::cout << "4. Bow Tie\n";
+    std::cout << "5. Exit\n";
     std::cout << "Enter your choice: ";
     std::cin >> choice;
 
@@ -112,7 +122,7 @@ void Shapes::drawInvertedTriangle(int height){
     }
 }
 
-//fxn definition for drawing a rectangle
+// fxn definition for drawing a rectangle
 void Shapes::drawRectangle(int width, int height){
     for (int i = 1; i <= height; i++){
         for (int j = 1; j <= width; j++){
@@ -120,4 +130,52 @@ void Shapes::drawRectangle(int width, int height){
         }
         std::cout << std::endl;
     }
+}
+
+// fxn definition for drawing a bow tie
+void Shapes::drawBowTie(int height){
+    int mid = height / 2 + 1;
+    int squareSize = 3; // defining small square's height in middle of bow tie
+
+    // top half
+    for (int i = 1; i < mid - squareSize / 2; i++) {
+        for (int j = 1; j <= i; j++) {
+            std::cout << "*";
+        }
+        for (int j = -1; j <= (height - 2 * i); j++) {
+            std::cout << " ";
+        }
+        for (int j = 1; j <= i; j++) {
+            std::cout << "*";
+        }
+        std::cout << std::endl;
+    }
+
+    // center square
+    for (int i = 0; i < squareSize; i++) {
+        for (int j = 1; j <= mid - squareSize / 2; j++) {
+            std::cout << "+";
+        }
+        for (int j = 1; j <= squareSize; j++) {
+            std::cout << "+";
+        }
+        for (int j = 1; j <= mid - squareSize / 2; j++) {
+            std::cout << "+";
+        }
+        std::cout << std::endl;
+    }
+
+    // bottom half
+    for (int i = mid - squareSize / 2 - 1; i >= 1; i--) {
+        for (int j = 1; j <= i; j++) {
+            std::cout << "*";
+        }
+        for (int j = -1; j <= (height - 2 * i); j++) {
+            std::cout << " ";
+        }
+        for (int j = 1; j <= i; j++) {
+            std::cout << "*";
+        }
+        std::cout << std::endl;
+    }   
 }

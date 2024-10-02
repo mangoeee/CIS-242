@@ -8,6 +8,7 @@ class Shapes {
         void drawTriangle(int height);
         void drawInvertedTriangle(int height);
         void drawRectangle(int width, int height);
+        void drawBowTie(int height);
 };
 
 int getUserChoice(); // fxn declared to get user's choice
