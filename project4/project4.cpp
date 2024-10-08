@@ -1,5 +1,6 @@
 /*
-    Instructions:
+    Emery Mangona
+    CIS 242 Project 4
 
     Create a menu with the following options:
         1. Filled triangle
@@ -135,47 +136,38 @@ void Shapes::drawRectangle(int width, int height){
 // fxn definition for drawing a bow tie
 void Shapes::drawBowTie(int height){
     int mid = height / 2 + 1;
-    int squareSize = 3; // defining small square's height in middle of bow tie
 
-    // top half
-    for (int i = 1; i < mid - squareSize / 2; i++) {
+    // top half (and middle row)
+    for (int i = 1; i <= mid; i++) {
+        // left side asterisks
         for (int j = 1; j <= i; j++) {
             std::cout << "*";
         }
-        for (int j = -1; j <= (height - 2 * i); j++) {
+        // spaces in the middle
+        for (int j = 0; j <= (height - 2 * i); j++) {
             std::cout << " ";
         }
+        // right side asterisks
         for (int j = 1; j <= i; j++) {
             std::cout << "*";
-        }
-        std::cout << std::endl;
-    }
-
-    // center square
-    for (int i = 0; i < squareSize; i++) {
-        for (int j = 1; j <= mid - squareSize / 2; j++) {
-            std::cout << "+";
-        }
-        for (int j = 1; j <= squareSize; j++) {
-            std::cout << "+";
-        }
-        for (int j = 1; j <= mid - squareSize / 2; j++) {
-            std::cout << "+";
         }
         std::cout << std::endl;
     }
 
     // bottom half
-    for (int i = mid - squareSize / 2 - 1; i >= 1; i--) {
+    for (int i = mid - 1; i >= 1; i--) {
+        // left side asterisks
         for (int j = 1; j <= i; j++) {
             std::cout << "*";
         }
-        for (int j = -1; j <= (height - 2 * i); j++) {
+        // spaces in the middle
+        for (int j = 0; j <= (height - 2 * i); j++) {
             std::cout << " ";
         }
+        // right side asterisks
         for (int j = 1; j <= i; j++) {
             std::cout << "*";
         }
         std::cout << std::endl;
-    }   
+    }
 }
