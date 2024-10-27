@@ -6,7 +6,7 @@
         - Balance use any amount hard-coded in your code
         - Amount withdrawn (input by user)
         - Amount deposit (input from user)
-        - Interest accrued (it is whatever equation you come up with from teh starting balance)
+        - Interest accrued (it is whatever equation you come up with from the starting balance)
         - Exit (exit out of the program)
 
     If the withdrawal amount is greater than the starting balance, a message appears stating: "Insufficient Funds" and then ask the user to either Exit or go back to Main Menu
@@ -27,7 +27,6 @@
 
 bool login();
 void displayMenu();
-class SavingsAcct::SavingsAcct;
 
 int main() {
     double initialBalance = 1000.0; // hard-coded balance as per instructions
@@ -40,7 +39,70 @@ int main() {
         return 1;
     }
 
+    bool running = true;
+    while (running) {
+        displayMenu();
+        int choice;
+        std::cin >> choice;
 
+        // handle invalid user inputs during menu selection
+        if (std::cin.fail()) {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "\nInvalid input. Please enter a number.\n";
+            continue;
+        }
+        
+        double amount;
+
+        switch(choice) {
+            // display balance
+            case 1: 
+                account.displayBalance();
+                break;
+            // deposit money
+            case 2:
+                std::cout << "Enter how much you would like to deposit: $";
+                std::cin >> amount;
+                try {
+                    if (confirmTransaction("deposit", amount)) {
+                        account.deposit(amount);
+                        std::cout << "Deposit successful!\n";
+                        account.displayBalance();
+                    }
+                } catch (const std::exception& e) {
+                    std::cout <<e.what() << std::endl;
+                }
+                break;
+            // withdraw money
+            case 3:
+                std::cout << "Enter how much you would like to withdraw: $";
+                std::cin >> amount;
+                try {
+                    if (confirmTransaction("Withdrawal", amount)) {
+                        account.withdraw(amount);
+                        std::cout << "withdrawal successful!\n";
+                        account.displayBalance();
+                    }
+                } catch (const std::exception& e) {
+                    std::cout << e.what() << std::endl;
+                }
+                break;
+            // apply interest
+            case 4:
+                account.applyInterest();
+                std::cout << "\n";
+                account.displayBalance();
+                break;
+            // exit program
+            case 5:
+                running = false;
+                std::cout << "Exiting program, buh-bye...\n";
+                break;
+            default:
+                std::cout << "Invalid choice. Please choose a valid option. \n";
+        }
+    }
 
     return 0;
 }
