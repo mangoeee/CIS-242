@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/emangona/Documents/GitHub/CIS-242/project5/project5a'
+relocations:     []
+...
