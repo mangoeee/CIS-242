@@ -2,6 +2,7 @@
 #define RECTANGLE_H
 
 #include "BasicShape.h"
+#include <stdexcept>
 
 class Rectangle : public BasicShape {
     private:
@@ -10,6 +11,9 @@ class Rectangle : public BasicShape {
     
     public:
         Rectangle(long w, long l) : width(w), length(l) {
+            if (length <= 0 || width <= 0) {
+                throw std::invalid_argument("The area of a geometric shape is always positive, so length and width must be a positive value.");
+            }
             calcArea();
         }
         long getWidth() {
