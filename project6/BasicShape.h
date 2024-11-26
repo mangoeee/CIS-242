@@ -7,7 +7,7 @@ class BasicShape {
         double area;
 
     protected:
-        void setArea(double a) {
+        void setArea(double a) { // update private area, protected to restrict access externally
             area = a;
         }
 

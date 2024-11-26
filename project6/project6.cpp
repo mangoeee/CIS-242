@@ -39,8 +39,45 @@
 */
 
 #include <iostream>
+#include "BasicShape.h"
+#include "Circle.h"
+#include "Rectangle.h"
 
 int main() {
+    double radius;
+    long width, length;
+
+    // input values for circle
+    std::cout << "Enter the radius of your circle: ";
+    std::cin >> radius;
+
+    if (radius <= 0) {
+        std::cerr << "Error: Radius must be a positive value.\n";
+        return 1; 
+    }
+
+    // input values for rectangle
+    std::cout << "Enter the width of your rectangle: ";
+    std::cin >> width;
+    std::cout << "Enter the length of your rectangle: ";
+    std::cin >> length;
+
+    // create circle obj
+    Circle circle(0, 0, radius); // hard-coded center at origin since it doesn't affect anything
+
+    // create rectangle obj
+    Rectangle rectangle(width, length); // width = 4, length = 7
+
+    // output results
+    std::cout << "\nCircle:\n";
+    std::cout << "\tCenter: (" << circle.getCenterX() << ", " << circle.getCenterY() << ")\n";
+    std::cout << "\tRadius: " << circle.getRadius() << " units\n";
+    std::cout << "\tArea = PI * r^2 = " << circle.getArea() << " square units\n\n";
+    
+    std::cout << "Rectangle:\n";
+    std::cout << "\tWidth: " << rectangle.getWidth() << " units\n";
+    std::cout << "\tLength: " << rectangle.getLength() << " units\n";
+    std::cout << "\tArea = length * width = " << rectangle.getArea() << " square units\n\n";
 
     return 0;
 }
