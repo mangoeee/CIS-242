@@ -6,6 +6,10 @@
 #include <vector>
 #include <fstream>
 
+bool login();
+bool confirmTransaction(std::string action, double amount);
+void displayMenu();
+
 // savings account class handles deposits, withdrawals, and balance
 class SavingsAcct {
     private:

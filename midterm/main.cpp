@@ -27,9 +27,6 @@
 #include <iostream>
 #include "header.h"
 
-bool login();
-void displayMenu();
-
 int main() {
     double initialBalance = 1000.0; // hard-coded balance as per instructions
     SavingsAcct account(initialBalance);
